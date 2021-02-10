@@ -27,6 +27,6 @@
   },
   "_moduleAliases": {
     "@": "dist",
-    "@sub-folder3": "dist/src/folder1/sub-folder2/sub-folder3"
+    "@sub-folder3": "dist/folder1/sub-folder2/sub-folder3"
   }
 }
