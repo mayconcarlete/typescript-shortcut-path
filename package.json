@@ -7,7 +7,7 @@
     "build": "rimraf dist && tsc",
     "clean": "rimraf dist",
     "dev": "npm run clean && tsc && nodemon src/index.ts",
-    "test": "jest --runInBand"
+    "test": "jest --runInBand --watch"
   },
   "keywords": [],
   "author": "",

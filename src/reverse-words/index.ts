@@ -46,19 +46,8 @@ console.log(sut)
 class ReverseStringTwo implements Perform {
   perform (str: string): string {
     return str
-      .split(' ')
-      .map(word => word.split(''))
-      .map(wordAsArray => {
-        let i = 0
-        let j = wordAsArray.length
-        while (i < j) {
-          const aux: string = wordAsArray[i]
-          wordAsArray[i] = wordAsArray[j]
-          wordAsArray[j] = aux
-          i++
-          j--
-        }
-        return wordAsArray.join('')
-      }).join(' ')
+    .split(' ')
+    .map(word => word.split('').reverse().join(''))
+    .join(' ')
   }
 }
