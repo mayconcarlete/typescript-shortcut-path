@@ -1,4 +1,4 @@
-import {SquareArray} from '../src/map-filter-reduce/square-array'
+import {SquareArray} from '../../src/map-filter-reduce/square-array'
 
 describe('SquareArray', () => {
   it('should square all elements given an array', () => {
