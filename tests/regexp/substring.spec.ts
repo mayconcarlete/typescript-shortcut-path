@@ -10,7 +10,7 @@ class VerifyStr implements Validate{
 }
 
 describe('Substring', () => {
-  it('should verify if a given string is a substring of another', () => {
+  it('should return true if a given substring matches with string', () => {
     const str = 'Maycon Carlete'
     const substring = 'carlete'
     const sut = new VerifyStr()
@@ -18,6 +18,17 @@ describe('Substring', () => {
 
     const result = sut.validate(str, substring) // act
 
-    expect(result).toBeTruthy()
+    expect(result).toBeTruthy() // assert
+  })
+
+  it('should return false if a given substring dont matches with string', () => {
+    const str = 'Maycon Carlete'
+    const substring = 'foo'
+    const sut = new VerifyStr()
+    // arrange
+
+    const result = sut.validate(str, substring) // act
+
+    expect(result).toBeFalsy() // assert
   })
 })
