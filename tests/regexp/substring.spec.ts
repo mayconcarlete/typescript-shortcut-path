@@ -1,13 +1,4 @@
-interface Validate {
-  validate(str: string, substring: string): boolean
-}
-
-class VerifyStr implements Validate{
-  validate(str: string, substring: string): boolean {
-    const regexp = new RegExp(substring, 'gi')
-    return regexp.test(str)
-  }
-}
+import {VerifyStr} from '../../src/regexp/substring'
 
 describe('Substring', () => {
   it('should return true if a given substring matches with string', () => {
