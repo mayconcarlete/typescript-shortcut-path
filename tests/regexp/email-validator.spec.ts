@@ -4,7 +4,7 @@ interface Validate {
 
 class EmailValidator implements Validate{
   validate(email: string): boolean {
-    const pattern = /^[\w\.-]{1,64}@mail\.com$/
+    const pattern = /^[a-zA-Z0-9][\w\.-]{0,63}@mail\.com$/
     const regexp = new RegExp(pattern,'gi')
     return regexp.test(email)
   }
@@ -49,6 +49,17 @@ describe('EmailValidator', () => {
     const isValidaEmail = sut.validate(email) // act
 
     expect(isValidaEmail).toBeFalsy()
+  })
+
+  it('should return false if email starts with allowed special character', () => {
+    const email1 = '-invalid@mail.com'
+    const email2 = '_invalid@mail.com'
+    const sut = new EmailValidator()
+    // arrange
+
+    expect(sut.validate(email1)).toBeFalsy()
+    expect(sut.validate(email2)).toBeFalsy()
+    // arrange
   })
 
   it('should return true when email is valid', () => {
