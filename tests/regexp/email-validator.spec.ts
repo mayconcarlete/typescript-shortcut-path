@@ -31,6 +31,16 @@ describe('EmailValidator', () => {
     expect(isValidaEmail).toBeFalsy()
   })
 
+  it('should return false if email has lenght 0 before @', () => {
+    const email = '@mail.com'
+    const sut = new EmailValidator()
+    // arrange
+
+    const isValidaEmail = sut.validate(email) // act
+
+    expect(isValidaEmail).toBeFalsy()
+  })
+
   it('should return true when email is valid', () => {
     const email = 'valid@mail.com'
     const sut = new EmailValidator()
