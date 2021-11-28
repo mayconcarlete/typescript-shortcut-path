@@ -4,12 +4,9 @@ interface Validate {
 
 class EmailValidator implements Validate{
   validate(email: string): boolean {
-    if(!this.hasMoreThanOneAt(email)) return false
-    return true
-  }
-
-  private hasMoreThanOneAt(email: string): boolean{
-    return email.split('@').length === 2? true: false
+    const pattern = /[\w]+@mail\.com/
+    const regexp = new RegExp(pattern,'gi')
+    return regexp.test(email)
   }
 }
 
