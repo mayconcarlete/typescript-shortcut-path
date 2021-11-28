@@ -14,18 +14,8 @@ class EmailValidator implements Validate{
 }
 
 describe('EmailValidator', () => {
-  it('should return false when email hasnt at least one @', () => {
+  it('should return false if email has different quantity if @ than one', () => {
     const email = 'mail.com'
-    const sut = new EmailValidator()
-    // arrange
-
-    const isValidEmail = sut.validate(email) // act
-
-    expect(isValidEmail).toBeFalsy() // assert
-  })
-
-  it('should return false if email has more than one @', () => {
-    const email = 'mail@@mail.com'
     const sut = new EmailValidator()
     // arrange
 
