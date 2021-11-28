@@ -4,7 +4,7 @@ interface Validate {
 
 class EmailValidator implements Validate{
   validate(email: string): boolean {
-    const pattern = /[\w]+@mail\.com/
+    const pattern = /^[\w]{1,64}@mail\.com$/
     const regexp = new RegExp(pattern,'gi')
     return regexp.test(email)
   }
@@ -19,6 +19,16 @@ describe('EmailValidator', () => {
     const isValidEmail = sut.validate(email) // act
 
     expect(isValidEmail).toBeFalsy() // assert
+  })
+
+  it('should return false if email has more than 64 before @', () => {
+    const email = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@mail.com'
+    const sut = new EmailValidator()
+    // arrange
+
+    const isValidaEmail = sut.validate(email) // act
+
+    expect(isValidaEmail).toBeFalsy()
   })
 
   it('should return true when email is valid', () => {
