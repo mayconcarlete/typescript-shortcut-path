@@ -4,7 +4,12 @@ interface Validate {
 
 class EmailValidator implements Validate{
   validate(email: string): boolean {
-    return false
+    if(!this.hasMoreThanOneAt(email)) return false
+    return true
+  }
+
+  private hasMoreThanOneAt(email: string): boolean{
+    return email.split('@').length === 2? true: false
   }
 }
 
@@ -17,5 +22,15 @@ describe('EmailValidator', () => {
     const isValidEmail = sut.validate(email) // act
 
     expect(isValidEmail).toBeFalsy() // assert
+  })
+
+  it('should return true when email is valid', () => {
+    const email = 'valid@mail.com'
+    const sut = new EmailValidator()
+    // arrange
+
+    const isValidaEmail = sut.validate(email) // act
+
+    expect(isValidaEmail).toBeTruthy() // arrange
   })
 })
