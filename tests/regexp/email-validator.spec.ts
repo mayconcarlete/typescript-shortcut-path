@@ -51,20 +51,27 @@ describe('EmailValidator', () => {
     expect(isValidaEmail).toBeFalsy()
   })
 
-  it('should return false if email starts with allowed special character', () => {
+  it('should return false if email starts with period, underscore or hyphen', () => {
     const email1 = '-invalid@mail.com'
     const email2 = '_invalid@mail.com'
-    const email3 = 'invalid.@mail.com'
-    const email4 = 'invalid-@mail.com'
-    const email5 = 'invalid_@mail.com'
+    const sut = new EmailValidator()
+    // arrange
+
+    expect(sut.validate(email1)).toBeFalsy()
+    expect(sut.validate(email2)).toBeFalsy()
+    // arrange
+  })
+
+  it('should return false if email ends with period, underscore or hyphen', () => {
+    const email1 = 'invalid.@mail.com'
+    const email2 = 'invalid-@mail.com'
+    const email3 = 'invalid_@mail.com'
     const sut = new EmailValidator()
     // arrange
 
     expect(sut.validate(email1)).toBeFalsy()
     expect(sut.validate(email2)).toBeFalsy()
     expect(sut.validate(email3)).toBeFalsy()
-    expect(sut.validate(email4)).toBeFalsy()
-    expect(sut.validate(email5)).toBeFalsy()
     // arrange
   })
 
