@@ -23,4 +23,14 @@ describe('RegexValidator', () =>{
 
     expect(isValidString).toBeTruthy() // assert
   })
+
+  it('should return false if validation fails given a invalid string', () => {
+    const str = 'dfg'
+    const sut = new RegexValidator()
+    // arrange
+
+    const isValidString = sut.validate(str) // act
+
+    expect(isValidString).toBeFalsy() // assert
+  })
 })
