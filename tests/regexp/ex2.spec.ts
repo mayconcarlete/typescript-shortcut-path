@@ -6,7 +6,7 @@ interface Validator {
 
 class RegexValidator implements Validator{
   validate(str: string): boolean {
-    const pattern = 'ab+'
+    const pattern = /a.+/
     const regex = new RegExp(pattern, 'gi')
     return regex.test(str)
   }
@@ -15,13 +15,13 @@ class RegexValidator implements Validator{
 
 describe('RegexValidator', () =>{
   it('should return true if validation succeeds given a valid string', ()=>{
-    const str = 'abc'
+    const str1 = 'abc'
+    const str2 = 'ac'
     const sut = new RegexValidator()
-    // arrange
 
-    const isValidString = sut.validate(str) // act
+    expect(sut.validate(str1)).toBeTruthy() // assert
+    expect(sut.validate(str2)).toBeTruthy() // assert
 
-    expect(isValidString).toBeTruthy() // assert
   })
 
   it('should return false if validation fails given a invalid string', () => {
