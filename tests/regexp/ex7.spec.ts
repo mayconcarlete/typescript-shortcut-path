@@ -9,8 +9,8 @@ interface Validate {
 
 class Exercise7 implements Validate{
   validate(str: any): boolean {
-  const pattern = /^([a-z]+)?_([a-z]+)?$/
-  const regexp = new RegExp(pattern, 'gi')
+  const pattern = /^[a-z]+_[a-z]+$/
+  const regexp = new RegExp(pattern, 'g')
   return regexp.test(str)
   }
 }
@@ -20,7 +20,7 @@ describe('Exercise7', () =>{
     const sut = new Exercise7()
 
     expect(sut.validate('aab_cbbbc')).toBeTruthy()
-    expect(sut.validate('_cbbbc')).toBeTruthy()
-    expect(sut.validate('abc_')).toBeTruthy()
+    expect(sut.validate('aa_cbbbc')).toBeTruthy()
+    expect(sut.validate('abc_aa')).toBeTruthy()
   })
 })
