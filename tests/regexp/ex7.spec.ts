@@ -23,4 +23,10 @@ describe('Exercise7', () =>{
     expect(sut.validate('aa_cbbbc')).toBeTruthy()
     expect(sut.validate('abc_aa')).toBeTruthy()
   })
+
+  it('should return false when validation fails', () =>{
+    const sut = new Exercise7()
+
+    expect(sut.validate('Aaab_abbbc')).toBeFalsy()
+  })
 })
