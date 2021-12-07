@@ -20,7 +20,7 @@ interface Validate{
 
 class Exercise8 implements Validate{
   validate(str: string): boolean {
-    const pattern = /[a-z][A-Z]|[A-Z][a-z]/
+    const pattern = /[A-Z][a-z]+/
     const regexp = new RegExp(pattern, 'g')
     return regexp.test(str)
   }
@@ -32,7 +32,14 @@ describe('', () => {
 
     expect(sut.validate('AaBbGg')).toBeTruthy()
     expect(sut.validate('Python')).toBeTruthy()
-    expect(sut.validate('aA')).toBeTruthy()
     expect(sut.validate('Aa')).toBeTruthy()
+  })
+
+  it('should return false when validation fails', () => {
+    const sut = new Exercise8()
+
+    expect(sut.validate('python')).toBeFalsy()
+    expect(sut.validate('PYTHON')).toBeFalsy()
+    expect(sut.validate('aA')).toBeFalsy()
   })
 })
