@@ -22,4 +22,11 @@ describe('', () => {
 
     expect(sut.validate('accddbbjjjb')).toBeTruthy()
   })
+
+  it('should return false when validation fails', () => {
+    const sut = new Exercise9()
+
+    expect(sut.validate('aabbbbd')).toBeFalsy()
+    expect(sut.validate('aabAbbbc')).toBeFalsy()
+  })
 })
