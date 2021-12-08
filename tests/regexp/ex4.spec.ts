@@ -1,20 +1,10 @@
+import {Exercise4} from '../../src/regexp/ex4'
 // 4. Write a Python program that matches a string that has an a followed by zero or one 'b'.
 
-interface Validate {
-  validate(str: string): boolean
-}
 
-class ZeroOneB implements Validate {
-  validate(str: string): boolean {
-    const pattern = /ab+?/
-    const regex = new RegExp(pattern, 'gi')
-    return regex.test(str)
-  }
-}
-
-describe('ZeroOneB', () => {
+describe('Exercise4', () => {
   it('should return true when validation succeeds', () => {
-    const sut = new ZeroOneB()
+    const sut = new Exercise4()
 
     expect(sut.validate('ab')).toBeTruthy()
     expect(sut.validate('abc')).toBeTruthy()
