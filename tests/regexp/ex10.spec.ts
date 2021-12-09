@@ -20,4 +20,10 @@ describe('Exercise10', () => {
 
     expect(sut.validate('The quick brown fox jumps over the lazy dog.')).toBeTruthy()
   })
+
+  it('should return false when validation fails', () => {
+    const sut = new Exercise10()
+
+    expect(sut.validate(' The quick brown fox jumps over the lazy dog.')).toBeFalsy()
+  })
 })
