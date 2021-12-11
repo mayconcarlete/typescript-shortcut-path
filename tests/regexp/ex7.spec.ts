@@ -1,19 +1,10 @@
+import {Exercise7} from '../../src/regexp/ex7'
+
 // 7. Write a Python program to find sequences of lowercase letters joined with a underscore.
 // print(text_match("aab_cbbbc")) match
 // print(text_match("aab_Abbbc")) not match
 // print(text_match("Aaab_abbbc")) no match
 
-interface Validate {
-  validate(str: string): boolean
-}
-
-class Exercise7 implements Validate{
-  validate(str: any): boolean {
-  const pattern = /^[a-z]+_[a-z]+$/
-  const regexp = new RegExp(pattern, 'g')
-  return regexp.test(str)
-  }
-}
 
 describe('Exercise7', () =>{
   it('should return true when validation succeeds', () =>{
