@@ -1,5 +1,5 @@
 export class Math{
-    sum(a:number, b:number){
+    static sum(a:number, b:number){
         return a + b
     }
 }
