@@ -9,16 +9,22 @@ export namespace Signup {
     }
   }
   export type Output = {
-    statusCode: number,
-    body: {
-      email: string
-      id: string
-    }
+    email: string
+    id: string
   }
 }
 
-class SignupController {
-  async handle(request: Signup.Input): Promise<Signup.Output>{
+export type HttpResponse<T=any> = {
+  statusCode: number,
+  body: T
+}
+
+interface Controller<T=any>{
+  handle(request:T):Promise<HttpResponse>
+}
+
+class SignupController implements Controller{
+  async handle(request: Signup.Input): Promise<HttpResponse<Signup.Output>>{
     return {
       statusCode: 201,
       body:{
@@ -34,8 +40,6 @@ describe('Signup controller', () => {
     const sut = new SignupController()
 
     const request: Input = {
-      headers:{},
-      params:{},
       body:{
         name: 'valid_name',
         email: 'valid@mail.com',
