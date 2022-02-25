@@ -8,6 +8,7 @@ enum Types {
   BOOLEAN = "BOOLEAN"
 }
 type UseCase = {
+  order: Number
   threshold: any
   operation: Operator
   type: Types
@@ -19,6 +20,7 @@ type User = {
 }
 
 const useCase:UseCase = {
+  order: 0,
   operation: Operator.EQ,
   type: Types.NUMBER,
   threshold: 10,
