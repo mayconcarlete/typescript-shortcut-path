@@ -3,9 +3,9 @@ enum Operator {
   GTE = "GTE"
 }
 enum Types {
-  STRING = "String",
-  NUMBER = "Number",
-  BOOLEAN = "BOOLEAN"
+  STRING = "string",
+  NUMBER = "number",
+  BOOLEAN = "boolean"
 }
 type UseCase = {
   order: Number
