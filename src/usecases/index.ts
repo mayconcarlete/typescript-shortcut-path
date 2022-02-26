@@ -17,6 +17,7 @@ type UseCase = {
 
 type User = {
   age: number
+  isWorker: boolean
 }
 
 const useCase:UseCase = {
@@ -27,8 +28,17 @@ const useCase:UseCase = {
   field: "age"
 }
 
+const useCase2:UseCase = {
+  order: 1,
+  operation: Operator.EQ,
+  type: Types.BOOLEAN,
+  threshold: true,
+  field: "isWorker"
+}
+
 const user:User = {
-  age: 10
+  age: 10,
+  isWorker: false
 }
 
 function check(useCase: UseCase, user: User){
@@ -38,4 +48,9 @@ function check(useCase: UseCase, user: User){
   }
 }
 
-console.log(check(useCase, user))
+const arrayOfValidations = [useCase, useCase2]
+const response = arrayOfValidations.every((casoDeUso) => {
+  return check(casoDeUso, user)
+})
+
+console.log(response)
