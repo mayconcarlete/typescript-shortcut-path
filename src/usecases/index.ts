@@ -12,7 +12,7 @@ type UseCase = {
   threshold: any
   operation: Operator
   type: Types
-  field: string
+  property: string
 }
 
 type User = {
@@ -25,7 +25,7 @@ const useCase:UseCase = {
   operation: Operator.EQ,
   type: Types.NUMBER,
   threshold: 10,
-  field: "age"
+  property: "age"
 }
 
 const useCase2:UseCase = {
@@ -33,7 +33,7 @@ const useCase2:UseCase = {
   operation: Operator.EQ,
   type: Types.BOOLEAN,
   threshold: true,
-  field: "isWorker"
+  property: "isWorker"
 }
 
 const user:User = {
@@ -42,7 +42,7 @@ const user:User = {
 }
 
 function check(useCase: UseCase, user: User){
-  const field = user[useCase.field as keyof User]
+  const field = user[useCase.property as keyof User]
   switch(useCase.operation){
     case Operator.EQ: return useCase.threshold === field
   }
@@ -54,3 +54,24 @@ const response = arrayOfValidations.every((casoDeUso) => {
 })
 
 console.log(response)
+
+interface verify {
+  check():boolean
+}
+class UseCaseModel implements verify{
+  constructor(
+    private readonly useCase: UseCase
+  ){}
+
+  check(): boolean {
+    const property = this.useCase.property
+    const operation = this.useCase.operation
+    const threshold = this.useCase.threshold
+    const type = this.useCase.type
+    switch(operation){
+      case Operator.EQ: return property === th
+      case Operator.GTE:
+    }
+    return false
+  }
+}
