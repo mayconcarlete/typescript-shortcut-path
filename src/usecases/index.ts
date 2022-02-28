@@ -38,7 +38,7 @@ const useCase2:UseCase = {
 
 const user:User = {
   age: 10,
-  isWorker: false
+  isWorker: true
 }
 
 function check(useCase: UseCase, user: User){
@@ -60,24 +60,26 @@ interface verify {
 }
 class UseCaseModel implements verify{
   constructor(
-    private readonly useCase: UseCase,
+    private readonly useCase: UseCase[],
     private readonly user: User
   ){}
 
   check(): boolean {
-    const property = this.useCase.property
-    const userProperty = this.user[property as keyof User]
-    const operation = this.useCase.operation
-    const threshold = this.useCase.threshold
-    switch(operation){
-      case Operator.EQ: return userProperty === threshold
-    }
-    return false
+    const isValid = this.useCase.every(useCase => {
+      const property = useCase.property
+      const userProperty = this.user[property as keyof User]
+      const operation = useCase.operation
+      const threshold = useCase.threshold
+      switch(operation){
+        case Operator.EQ: return userProperty === threshold
+      }
+    })
+    return isValid
   }
 }
 
 const useCaseModel = new UseCaseModel(
-  useCase,
+  arrayOfValidations,
   user
 )
 
