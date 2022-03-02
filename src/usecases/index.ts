@@ -15,7 +15,7 @@ type Rule = {
   property: string
 }
 
-type User = {
+type Model = {
   age: number
   isWorker: boolean
 }
@@ -28,7 +28,7 @@ const rule:Rule = {
   property: "age"
 }
 
-const useCase2:Rule = {
+const rule2:Rule = {
   order: 1,
   operation: Operator.EQ,
   type: Types.BOOLEAN,
@@ -36,40 +36,35 @@ const useCase2:Rule = {
   property: "isWorker"
 }
 
-const user:User = {
+const userModel:Model = {
   age: 10,
   isWorker: true
 }
 
-function check(useCase: Rule, user: User){
-  const field = user[useCase.property as keyof User]
+function check(useCase: Rule, user: Model){
+  const field = user[useCase.property as keyof Model]
   switch(useCase.operation){
     case Operator.EQ: return useCase.threshold === field
   }
 }
 
-const arrayOfValidations = [rule, useCase2]
-const response = arrayOfValidations.every((casoDeUso) => {
-  return check(casoDeUso, user)
-})
-
-// console.log(response)
+const arrayOfRules = [rule, rule2]
 
 interface verify {
   check():boolean
 }
-class UseCaseModel implements verify{
+class Context implements verify{
   constructor(
-    private readonly useCase: Rule[],
-    private readonly user: User
+    private readonly rules: Rule[],
+    private readonly model: Model
   ){}
 
   check(): boolean {
-    const isValid = this.useCase.every(useCase => {
-      const property = useCase.property
-      const userProperty = this.user[property as keyof User]
-      const operation = useCase.operation
-      const threshold = useCase.threshold
+    const isValid = this.rules.every(rule => {
+      const property = rule.property
+      const userProperty = this.model[property as keyof Model]
+      const operation = rule.operation
+      const threshold = rule.threshold
       switch(operation){
         case Operator.EQ: return userProperty === threshold
       }
@@ -78,9 +73,9 @@ class UseCaseModel implements verify{
   }
 }
 
-const useCaseModel = new UseCaseModel(
-  arrayOfValidations,
-  user
+const useCaseModel = new Context(
+  arrayOfRules,
+  userModel
 )
 
 console.log(useCaseModel.check())
