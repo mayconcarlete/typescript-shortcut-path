@@ -7,7 +7,7 @@ enum Types {
   NUMBER = "number",
   BOOLEAN = "boolean"
 }
-type UseCase = {
+type Rule = {
   order: Number
   threshold: any
   operation: Operator
@@ -20,7 +20,7 @@ type User = {
   isWorker: boolean
 }
 
-const useCase:UseCase = {
+const rule:Rule = {
   order: 0,
   operation: Operator.EQ,
   type: Types.NUMBER,
@@ -28,7 +28,7 @@ const useCase:UseCase = {
   property: "age"
 }
 
-const useCase2:UseCase = {
+const useCase2:Rule = {
   order: 1,
   operation: Operator.EQ,
   type: Types.BOOLEAN,
@@ -41,14 +41,14 @@ const user:User = {
   isWorker: true
 }
 
-function check(useCase: UseCase, user: User){
+function check(useCase: Rule, user: User){
   const field = user[useCase.property as keyof User]
   switch(useCase.operation){
     case Operator.EQ: return useCase.threshold === field
   }
 }
 
-const arrayOfValidations = [useCase, useCase2]
+const arrayOfValidations = [rule, useCase2]
 const response = arrayOfValidations.every((casoDeUso) => {
   return check(casoDeUso, user)
 })
@@ -60,7 +60,7 @@ interface verify {
 }
 class UseCaseModel implements verify{
   constructor(
-    private readonly useCase: UseCase[],
+    private readonly useCase: Rule[],
     private readonly user: User
   ){}
 
