@@ -1,6 +1,9 @@
 enum Operator {
   EQ = "EQ",
-  GTE = "GTE"
+  GT = "GT",
+  GTE = "GTE",
+  LT= "LT",
+  LTE = "LTE"
 }
 enum Types {
   STRING = "string",
