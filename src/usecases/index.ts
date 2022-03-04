@@ -41,13 +41,6 @@ const userModel:Model = {
   isWorker: true
 }
 
-function check(useCase: Rule, user: Model){
-  const field = user[useCase.property as keyof Model]
-  switch(useCase.operation){
-    case Operator.EQ: return useCase.threshold === field
-  }
-}
-
 const arrayOfRules = [rule, rule2]
 
 interface verify {
