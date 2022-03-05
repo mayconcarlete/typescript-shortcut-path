@@ -13,11 +13,12 @@ app.get("/", async(req: Request, res:Response, next:NextFunction) => {
       userId: Joi.string().required(),
       featureId: Joi.string().required()});
 
-      const validatorResult = await schema.validate(req.query)
+      await schema.validate(req.query)
 
-      res.status(201).send({status: 'created'})
+      res.status(201).send({status: "created"})
     }catch(error: any){
       if(error.isJoi) return res.status(400).send({error:"Validation Error"})
+      return res.status(500).send({error: "Server Error"})
     }
 })
 
