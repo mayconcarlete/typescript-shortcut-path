@@ -17,7 +17,8 @@ app.get("/", async(req: Request, res:Response, next:NextFunction) => {
 
       res.status(201).send({status: "created"})
     }catch(error: any){
-      if(error.isJoi) return res.status(400).send({error:"Validation Error"})
+      console.log(error)
+      if(error.isJoi) return res.status(400).send({error: error.details[0].message})
       return res.status(500).send({error: "Server Error"})
     }
 })
