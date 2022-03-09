@@ -6,7 +6,7 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "clean": "rimraf dist",
-    "dev": "ts-node-dev --respawn src/index.ts",
+    "dev": "ts-node-dev --respawn src/usecases/index.ts",
     "test": "jest --runInBand --watch"
   },
   "keywords": [],

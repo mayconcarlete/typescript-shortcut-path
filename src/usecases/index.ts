@@ -74,4 +74,41 @@ const useCaseModel = new Context(
   userModel
 )
 
-console.log(useCaseModel.check())
+// console.log(useCaseModel.check())
+type Input = {
+  a: number
+  b: number
+}
+
+type Output1 = {
+  result: boolean
+}
+type Output2 = {
+  response: string
+}
+type Output3 = {
+  error: Error
+}
+
+interface TestMultipleOutputs {
+  perform(input: Input): Output1 | Output2 | Output3
+}
+
+class Test implements TestMultipleOutputs{
+  perform(input: Input): Output1 | Output2 | Output3 {
+    if(input.a === 1) return {
+      result: true
+    }
+    else if(input.a === 2) return {
+      response: 'Hello world'
+    }
+    return {
+      error: new Error('test')
+    }
+  }
+}
+
+const tests = new Test()
+console.log(tests.perform({a:1, b:2}))
+console.log(tests.perform({a:2, b:2}))
+console.log(tests.perform({a:3, b:2}))
