@@ -1,4 +1,3 @@
-import { Math } from '@/folder1/sub-folder2/sub-folder3/sum'
 import express, {json, Request, Response, NextFunction} from 'express'
 const Joi = require("joi")
 
