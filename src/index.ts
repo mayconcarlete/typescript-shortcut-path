@@ -19,17 +19,11 @@ interface QueryResult extends Athena.QueryObjectInterface {
 const app = express()
 app.use(json())
 app.get("/", async(req, res) =>{
-  console.log("entreei")
-  let myQuery = "select aips from mistplay_transform.user_fraud_stats limit 1"
-  // let myQuery = "DESCRIBE mistplay_transform.user_fraud_stats"
 
   try{
-    const result = await athenaExpress.query(myQuery)
-    const response = result.Items!.map(element => {
-      Object.keys(element).forEach(key => console.log(key))
 
-    })
-    res.send(result)
+    res.send({data: "hello world"})
+
   }catch(error){
     console.log(error)
   }
