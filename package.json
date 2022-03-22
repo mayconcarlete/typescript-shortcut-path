@@ -7,7 +7,7 @@
     "build": "rimraf dist && tsc",
     "clean": "rimraf dist",
     "dev": "ts-node-dev --respawn src/index.ts",
-    "str":"nodemon --watch index.js",
+    "str": "nodemon --watch index.js",
     "test": "jest --runInBand --watch"
   },
   "keywords": [],
@@ -32,6 +32,7 @@
   "dependencies": {
     "athena-express": "^7.1.4",
     "aws-sdk": "^2.1094.0",
+    "dynogels-promisified": "^1.0.4",
     "express": "^4.17.3",
     "joi": "^13.7.0",
     "module-alias": "^2.2.2"
